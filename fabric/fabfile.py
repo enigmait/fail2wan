@@ -20,6 +20,21 @@ def unwhitelist(jail, ip='null'):
     """ Remote IP from whitelist """
     run("sudo /usr/bin/fail2ban-client set %s delignoreip %s" % (jail, ip))
 
+def start(jail=''):
+    """ Starts a jail """
+    run("sudo /usr/bin/fail2ban-client start %s" % jail)
+
+def stop(jail=''):
+    """ Stops a jail """
+    run("sudo /usr/bin/fail2ban-client stop %s" % jail)
+
 def status(jail=''):
     """ Gets the status of a jail """
     run("sudo /usr/bin/fail2ban-client status %s" % jail)
+
+def ping():
+    """ Gets the status of a jail """
+    run("sudo /usr/bin/fail2ban-client ping")
+
+
+
