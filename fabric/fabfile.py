@@ -54,5 +54,16 @@ def ping():
     """ Gets the status of a jail """
     run("sudo /usr/bin/fail2ban-client ping")
 
+def reload(jail=''):
+    """ Reloads a jail """
+    run("sudo /usr/bin/fail2ban-client reload %s" % jail)
+
+def loglevel(level=None):
+    """ Get / Set the logging level """
+    if level is None:
+        run("sudo /usr/bin/fail2ban-client get loglevel")
+    else:
+        run("sudo /usr/bin/fail2ban-client set loglevel %s" % (loglevel))
+
 
 
