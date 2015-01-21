@@ -8,27 +8,33 @@ def ban(jail, ip='null'):
     """ Bans a specific IP address """
     run("sudo /usr/bin/fail2ban-client set %s banip %s" % (jail, ip))
     
-def bantime(jail, time='600'):
-    """ Set the ban time on a jail """
-    run("sudo /usr/bin/fail2ban-client set %s bantime %s" % (jail, time))
+def bantime(jail, time=None):
+    """ Get / Set the ban time on a jail """
+    if time is None:
+        run("sudo /usr/bin/fail2ban-client get %s bantime" % (jail))
+    else:
+        run("sudo /usr/bin/fail2ban-client set %s bantime %s" % (jail, time))
 
-def maxretry(jail, time='6'):
-    """ Set the ban time on a jail """
-    run("sudo /usr/bin/fail2ban-client set %s maxretry %s" % (jail, time))
+def maxretry(jail, time=None):
+    """ Get / Set the ban time on a jail """
+    if time is None:
+        run("sudo /usr/bin/fail2ban-client get %s maxretry" % (jail))
+    else:
+        run("sudo /usr/bin/fail2ban-client set %s maxretry %s" % (jail, time))
 
 def idle(jail, idlemode='off'):
     """ Idle or Unidle a jail """
     run("sudo /usr/bin/fail2ban-client set %s idle %s" % (jail, idlemode))
 
-def unban(jail, ip='null'):
+def unban(jail, ip):
     """ Unban an IP address """
     run("sudo /usr/bin/fail2ban-client set %s unbanip %s" % (jail, ip))
 
-def whitelist(jail, ip='null'):
+def whitelist(jail, ip):
     """ Add IP to Whitelist """
     run("sudo /usr/bin/fail2ban-client set %s addignoreip %s" % (jail, ip))
 
-def unwhitelist(jail, ip='null'):
+def unwhitelist(jail, ip):
     """ Remote IP from whitelist """
     run("sudo /usr/bin/fail2ban-client set %s delignoreip %s" % (jail, ip))
 
