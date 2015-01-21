@@ -7,6 +7,18 @@ env.hosts = open('hosts.list', 'r').readlines()
 def ban(jail, ip='null'):
     """ Bans a specific IP address """
     run("sudo /usr/bin/fail2ban-client set %s banip %s" % (jail, ip))
+    
+def bantime(jail, time='600'):
+    """ Set the ban time on a jail """
+    run("sudo /usr/bin/fail2ban-client set %s bantime %s" % (jail, time))
+
+def maxretry(jail, time='6'):
+    """ Set the ban time on a jail """
+    run("sudo /usr/bin/fail2ban-client set %s maxretry %s" % (jail, time))
+
+def idle(jail, idlemode='off'):
+    """ Idle or Unidle a jail """
+    run("sudo /usr/bin/fail2ban-client set %s idle %s" % (jail, idlemode))
 
 def unban(jail, ip='null'):
     """ Unban an IP address """
